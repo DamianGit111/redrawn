@@ -1,0 +1,65 @@
+/* Remove the browser's default page margin so the map can fill the whole window. */
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* The map covers the entire screen. */
+#map {
+  position: fixed;
+  inset: 0; /* shorthand for top: 0; right: 0; bottom: 0; left: 0; */
+}
+
+/* Button group pinned to the top-left corner, floating above the map. */
+#plan-buttons {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1; /* keeps the buttons on top of the map */
+  display: flex;
+  border: 1px solid #222;
+  border-radius: 6px;
+  overflow: hidden; /* clips the buttons to the rounded corners */
+}
+
+#plan-buttons button {
+  padding: 8px 14px;
+  border: none;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* A thin divider between the two buttons. */
+#plan-buttons button + button {
+  border-left: 1px solid #222;
+}
+
+/* The button for the plan currently shown. main.js adds/removes this class. */
+#plan-buttons button.active {
+  background: #222;
+  color: #fff;
+}
+
+/* Small dark box that follows the mouse. main.js sets its left/top position. */
+#tooltip {
+  position: fixed;
+  z-index: 2;
+  max-width: 260px;
+  padding: 6px 10px;
+  background: rgba(20, 20, 20, 0.9);
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.4;
+  border-radius: 4px;
+  pointer-events: none; /* so the tooltip never blocks the mouse from reaching the map */
+}
+
+/* The [hidden] attribute must win over the rules above. */
+#tooltip[hidden] {
+  display: none;
+}

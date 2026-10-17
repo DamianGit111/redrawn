@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>California Congressional Maps: 2021 vs 2025</title>
+
+  <!-- MapLibre GL JS: the map library's stylesheet and script, loaded from the jsdelivr CDN.
+       The version is pinned so the site never changes unexpectedly. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- MapLibre draws the map inside this empty div. -->
+  <div id="map"></div>
+
+  <!-- Buttons for switching between the two plans.
+       data-year tells main.js which plan each button shows. -->
+  <div id="plan-buttons">
+    <button type="button" data-year="2021">2021 map</button>
+    <button type="button" data-year="2025">2025 map</button>
+  </div>
+
+  <!-- Hover tooltip. Hidden until the mouse is over a district. -->
+  <div id="tooltip" hidden></div>
+
+  <!-- Our code runs last, after the page elements above exist. -->
+  <script src="main.js"></script>
+</body>
+</html>

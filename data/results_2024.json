@@ -1,0 +1,843 @@
+{
+ "meta": {
+  "description": "2024 presidential results (Harris vs. Trump) counted inside each California congressional district, under the 2021 commission map and the 2025 Prop 50 map. margin = (Harris - Trump) / all presidential votes x 100; positive = Harris ahead.",
+  "source": "The Downballot (calculated by Daniel Donner; sponsored by Grassroots Analytics): https://www.the-downballot.com/p/the-downballots-calculations-of-presidential",
+  "checks": "Statewide sums match certified 2024 CA results (Harris 9,276,179; Trump 6,081,697) exactly for the 2021 map and within 2 votes for the 2025 map; every row percentage recomputed from vote counts.",
+  "same_area_pct": "Share of geographic area that is the same between the 2021 and 2025 versions of a district number (intersection / union of the two shapes). Computed from the official district shapefiles; 100 = unchanged, 0 = an entirely different place.",
+  "retrieved": "2026-10-17"
+ },
+ "districts": [
+  {
+   "district": 1,
+   "2021": {
+    "harris": 118090,
+    "trump": 199649,
+    "total": 326893,
+    "margin": -24.95
+   },
+   "2025": {
+    "harris": 186337,
+    "trump": 144548,
+    "total": 341947,
+    "margin": 12.22
+   },
+   "same_area_pct": 30.9
+  },
+  {
+   "district": 2,
+   "2021": {
+    "harris": 276863,
+    "trump": 100474,
+    "total": 390600,
+    "margin": 45.16
+   },
+   "2025": {
+    "harris": 236586,
+    "trump": 140619,
+    "total": 389445,
+    "margin": 24.64
+   },
+   "same_area_pct": 40.5
+  },
+  {
+   "district": 3,
+   "2021": {
+    "harris": 201922,
+    "trump": 218497,
+    "total": 434048,
+    "margin": -3.82
+   },
+   "2025": {
+    "harris": 195618,
+    "trump": 158363,
+    "total": 366674,
+    "margin": 10.16
+   },
+   "same_area_pct": 15.8
+  },
+  {
+   "district": 4,
+   "2021": {
+    "harris": 225203,
+    "trump": 115410,
+    "total": 351669,
+    "margin": 31.22
+   },
+   "2025": {
+    "harris": 191846,
+    "trump": 141949,
+    "total": 344131,
+    "margin": 14.5
+   },
+   "same_area_pct": 33.1
+  },
+  {
+   "district": 5,
+   "2021": {
+    "harris": 151686,
+    "trump": 219092,
+    "total": 380505,
+    "margin": -17.71
+   },
+   "2025": {
+    "harris": 139318,
+    "trump": 214442,
+    "total": 362880,
+    "margin": -20.7
+   },
+   "same_area_pct": 38.9
+  },
+  {
+   "district": 6,
+   "2021": {
+    "harris": 166463,
+    "trump": 124666,
+    "total": 301412,
+    "margin": 13.87
+   },
+   "2025": {
+    "harris": 176946,
+    "trump": 148674,
+    "total": 336566,
+    "margin": 8.4
+   },
+   "same_area_pct": 29.1
+  },
+  {
+   "district": 7,
+   "2021": {
+    "harris": 195104,
+    "trump": 103118,
+    "total": 309198,
+    "margin": 29.75
+   },
+   "2025": {
+    "harris": 189995,
+    "trump": 145560,
+    "total": 346796,
+    "margin": 12.81
+   },
+   "same_area_pct": 31.0
+  },
+  {
+   "district": 8,
+   "2021": {
+    "harris": 200015,
+    "trump": 75771,
+    "total": 285116,
+    "margin": 43.58
+   },
+   "2025": {
+    "harris": 204669,
+    "trump": 98182,
+    "total": 312678,
+    "margin": 34.06
+   },
+   "same_area_pct": 34.6
+  },
+  {
+   "district": 9,
+   "2021": {
+    "harris": 122904,
+    "trump": 127491,
+    "total": 258203,
+    "margin": -1.78
+   },
+   "2025": {
+    "harris": 145369,
+    "trump": 114699,
+    "total": 268495,
+    "margin": 11.42
+   },
+   "same_area_pct": 33.8
+  },
+  {
+   "district": 10,
+   "2021": {
+    "harris": 247321,
+    "trump": 119198,
+    "total": 379290,
+    "margin": 33.78
+   },
+   "2025": {
+    "harris": 246231,
+    "trump": 119354,
+    "total": 378177,
+    "margin": 33.55
+   },
+   "same_area_pct": 66.8
+  },
+  {
+   "district": 11,
+   "2021": {
+    "harris": 295463,
+    "trump": 50870,
+    "total": 361182,
+    "margin": 67.72
+   },
+   "2025": {
+    "harris": 295463,
+    "trump": 50870,
+    "total": 361182,
+    "margin": 67.72
+   },
+   "same_area_pct": 99.9
+  },
+  {
+   "district": 12,
+   "2021": {
+    "harris": 269148,
+    "trump": 33869,
+    "total": 318386,
+    "margin": 73.9
+   },
+   "2025": {
+    "harris": 269144,
+    "trump": 33875,
+    "total": 318388,
+    "margin": 73.89
+   },
+   "same_area_pct": 99.9
+  },
+  {
+   "district": 13,
+   "2021": {
+    "harris": 100559,
+    "trump": 112433,
+    "total": 218799,
+    "margin": -5.43
+   },
+   "2025": {
+    "harris": 101906,
+    "trump": 101125,
+    "total": 208792,
+    "margin": 0.37
+   },
+   "same_area_pct": 59.6
+  },
+  {
+   "district": 14,
+   "2021": {
+    "harris": 191274,
+    "trump": 88263,
+    "total": 290778,
+    "margin": 35.43
+   },
+   "2025": {
+    "harris": 186745,
+    "trump": 87471,
+    "total": 285569,
+    "margin": 34.76
+   },
+   "same_area_pct": 89.2
+  },
+  {
+   "district": 15,
+   "2021": {
+    "harris": 220603,
+    "trump": 74250,
+    "total": 305590,
+    "margin": 47.89
+   },
+   "2025": {
+    "harris": 220603,
+    "trump": 74250,
+    "total": 305590,
+    "margin": 47.89
+   },
+   "same_area_pct": 99.9
+  },
+  {
+   "district": 16,
+   "2021": {
+    "harris": 249344,
+    "trump": 82398,
+    "total": 344065,
+    "margin": 48.52
+   },
+   "2025": {
+    "harris": 246022,
+    "trump": 82261,
+    "total": 340419,
+    "margin": 48.11
+   },
+   "same_area_pct": 99.4
+  },
+  {
+   "district": 17,
+   "2021": {
+    "harris": 176438,
+    "trump": 76249,
+    "total": 264323,
+    "margin": 37.9
+   },
+   "2025": {
+    "harris": 177917,
+    "trump": 74911,
+    "total": 264340,
+    "margin": 38.97
+   },
+   "same_area_pct": 96.1
+  },
+  {
+   "district": 18,
+   "2021": {
+    "harris": 149269,
+    "trump": 79571,
+    "total": 236237,
+    "margin": 29.5
+   },
+   "2025": {
+    "harris": 148835,
+    "trump": 81258,
+    "total": 237523,
+    "margin": 28.45
+   },
+   "same_area_pct": 77.7
+  },
+  {
+   "district": 19,
+   "2021": {
+    "harris": 246403,
+    "trump": 116909,
+    "total": 376513,
+    "margin": 34.39
+   },
+   "2025": {
+    "harris": 246254,
+    "trump": 116802,
+    "total": 376248,
+    "margin": 34.41
+   },
+   "same_area_pct": 100.0
+  },
+  {
+   "district": 20,
+   "2021": {
+    "harris": 110642,
+    "trump": 210246,
+    "total": 328446,
+    "margin": -30.33
+   },
+   "2025": {
+    "harris": 103310,
+    "trump": 204962,
+    "total": 315411,
+    "margin": -32.23
+   },
+   "same_area_pct": 88.4
+  },
+  {
+   "district": 21,
+   "2021": {
+    "harris": 101220,
+    "trump": 93644,
+    "total": 200112,
+    "margin": 3.79
+   },
+   "2025": {
+    "harris": 104289,
+    "trump": 92237,
+    "total": 201925,
+    "margin": 5.97
+   },
+   "same_area_pct": 69.4
+  },
+  {
+   "district": 22,
+   "2021": {
+    "harris": 79359,
+    "trump": 89469,
+    "total": 173377,
+    "margin": -5.83
+   },
+   "2025": {
+    "harris": 81817,
+    "trump": 84994,
+    "total": 171356,
+    "margin": -1.85
+   },
+   "same_area_pct": 55.6
+  },
+  {
+   "district": 23,
+   "2021": {
+    "harris": 110434,
+    "trump": 156700,
+    "total": 274456,
+    "margin": -16.86
+   },
+   "2025": {
+    "harris": 108128,
+    "trump": 161911,
+    "total": 277288,
+    "margin": -19.4
+   },
+   "same_area_pct": 78.7
+  },
+  {
+   "district": 24,
+   "2021": {
+    "harris": 214713,
+    "trump": 126508,
+    "total": 352206,
+    "margin": 25.04
+   },
+   "2025": {
+    "harris": 214293,
+    "trump": 126559,
+    "total": 351804,
+    "margin": 24.94
+   },
+   "same_area_pct": 99.5
+  },
+  {
+   "district": 25,
+   "2021": {
+    "harris": 125529,
+    "trump": 119328,
+    "total": 250727,
+    "margin": 2.47
+   },
+   "2025": {
+    "harris": 140058,
+    "trump": 124338,
+    "total": 270412,
+    "margin": 5.81
+   },
+   "same_area_pct": 62.4
+  },
+  {
+   "district": 26,
+   "2021": {
+    "harris": 190849,
+    "trump": 145316,
+    "total": 345925,
+    "margin": 13.16
+   },
+   "2025": {
+    "harris": 193294,
+    "trump": 140781,
+    "total": 343771,
+    "margin": 15.28
+   },
+   "same_area_pct": 72.9
+  },
+  {
+   "district": 27,
+   "2021": {
+    "harris": 157170,
+    "trump": 145061,
+    "total": 311417,
+    "margin": 3.89
+   },
+   "2025": {
+    "harris": 158101,
+    "trump": 129273,
+    "total": 296345,
+    "margin": 9.73
+   },
+   "same_area_pct": 51.2
+  },
+  {
+   "district": 28,
+   "2021": {
+    "harris": 204263,
+    "trump": 115237,
+    "total": 330517,
+    "margin": 26.94
+   },
+   "2025": {
+    "harris": 199379,
+    "trump": 116724,
+    "total": 326913,
+    "margin": 25.28
+   },
+   "same_area_pct": 85.5
+  },
+  {
+   "district": 29,
+   "2021": {
+    "harris": 154257,
+    "trump": 72714,
+    "total": 234315,
+    "margin": 34.8
+   },
+   "2025": {
+    "harris": 156025,
+    "trump": 75625,
+    "total": 239016,
+    "margin": 33.64
+   },
+   "same_area_pct": 45.8
+  },
+  {
+   "district": 30,
+   "2021": {
+    "harris": 233138,
+    "trump": 94036,
+    "total": 338818,
+    "margin": 41.06
+   },
+   "2025": {
+    "harris": 233119,
+    "trump": 96524,
+    "total": 341310,
+    "margin": 40.02
+   },
+   "same_area_pct": 40.4
+  },
+  {
+   "district": 31,
+   "2021": {
+    "harris": 151581,
+    "trump": 106588,
+    "total": 266185,
+    "margin": 16.9
+   },
+   "2025": {
+    "harris": 159494,
+    "trump": 123786,
+    "total": 292043,
+    "margin": 12.23
+   },
+   "same_area_pct": 37.2
+  },
+  {
+   "district": 32,
+   "2021": {
+    "harris": 224304,
+    "trump": 114803,
+    "total": 349320,
+    "margin": 31.35
+   },
+   "2025": {
+    "harris": 219603,
+    "trump": 129673,
+    "total": 359755,
+    "margin": 25.0
+   },
+   "same_area_pct": 76.5
+  },
+  {
+   "district": 33,
+   "2021": {
+    "harris": 129054,
+    "trump": 107755,
+    "total": 243888,
+    "margin": 8.73
+   },
+   "2025": {
+    "harris": 132891,
+    "trump": 108565,
+    "total": 248705,
+    "margin": 9.78
+   },
+   "same_area_pct": 70.6
+  },
+  {
+   "district": 34,
+   "2021": {
+    "harris": 156740,
+    "trump": 48092,
+    "total": 214539,
+    "margin": 50.64
+   },
+   "2025": {
+    "harris": 156729,
+    "trump": 48090,
+    "total": 214525,
+    "margin": 50.64
+   },
+   "same_area_pct": 99.8
+  },
+  {
+   "district": 35,
+   "2021": {
+    "harris": 131010,
+    "trump": 105937,
+    "total": 244123,
+    "margin": 10.27
+   },
+   "2025": {
+    "harris": 136179,
+    "trump": 115899,
+    "total": 259995,
+    "margin": 7.8
+   },
+   "same_area_pct": 46.7
+  },
+  {
+   "district": 36,
+   "2021": {
+    "harris": 261912,
+    "trump": 111106,
+    "total": 385620,
+    "margin": 39.11
+   },
+   "2025": {
+    "harris": 261912,
+    "trump": 111107,
+    "total": 385621,
+    "margin": 39.11
+   },
+   "same_area_pct": 99.9
+  },
+  {
+   "district": 37,
+   "2021": {
+    "harris": 184950,
+    "trump": 42949,
+    "total": 235124,
+    "margin": 60.39
+   },
+   "2025": {
+    "harris": 184950,
+    "trump": 42949,
+    "total": 235124,
+    "margin": 60.39
+   },
+   "same_area_pct": 99.8
+  },
+  {
+   "district": 38,
+   "2021": {
+    "harris": 166559,
+    "trump": 119143,
+    "total": 294877,
+    "margin": 16.08
+   },
+   "2025": {
+    "harris": 142634,
+    "trump": 110393,
+    "total": 261716,
+    "margin": 12.32
+   },
+   "same_area_pct": 32.4
+  },
+  {
+   "district": 39,
+   "2021": {
+    "harris": 125934,
+    "trump": 103033,
+    "total": 236224,
+    "margin": 9.69
+   },
+   "2025": {
+    "harris": 125382,
+    "trump": 103042,
+    "total": 235647,
+    "margin": 9.48
+   },
+   "same_area_pct": 88.1
+  },
+  {
+   "district": 40,
+   "2021": {
+    "harris": 184651,
+    "trump": 193734,
+    "total": 391393,
+    "margin": -2.32
+   },
+   "2025": {
+    "harris": 161640,
+    "trump": 208262,
+    "total": 381211,
+    "margin": -12.23
+   },
+   "same_area_pct": 25.6
+  },
+  {
+   "district": 41,
+   "2021": {
+    "harris": 165922,
+    "trump": 187430,
+    "total": 362808,
+    "margin": -5.93
+   },
+   "2025": {
+    "harris": 172854,
+    "trump": 128694,
+    "total": 311081,
+    "margin": 14.2
+   },
+   "same_area_pct": 0.0
+  },
+  {
+   "district": 42,
+   "2021": {
+    "harris": 159940,
+    "trump": 79492,
+    "total": 248059,
+    "margin": 32.43
+   },
+   "2025": {
+    "harris": 192323,
+    "trump": 146391,
+    "total": 349703,
+    "margin": 13.13
+   },
+   "same_area_pct": 75.5
+  },
+  {
+   "district": 43,
+   "2021": {
+    "harris": 162845,
+    "trump": 53435,
+    "total": 223449,
+    "margin": 48.96
+   },
+   "2025": {
+    "harris": 162845,
+    "trump": 53434,
+    "total": 223448,
+    "margin": 48.96
+   },
+   "same_area_pct": 99.8
+  },
+  {
+   "district": 44,
+   "2021": {
+    "harris": 164053,
+    "trump": 79136,
+    "total": 251106,
+    "margin": 33.82
+   },
+   "2025": {
+    "harris": 145093,
+    "trump": 67784,
+    "total": 219843,
+    "margin": 35.17
+   },
+   "same_area_pct": 78.3
+  },
+  {
+   "district": 45,
+   "2021": {
+    "harris": 159879,
+    "trump": 154900,
+    "total": 324363,
+    "margin": 1.54
+   },
+   "2025": {
+    "harris": 151772,
+    "trump": 139943,
+    "total": 300410,
+    "margin": 3.94
+   },
+   "same_area_pct": 69.7
+  },
+  {
+   "district": 46,
+   "2021": {
+    "harris": 125174,
+    "trump": 86462,
+    "total": 218362,
+    "margin": 17.73
+   },
+   "2025": {
+    "harris": 128647,
+    "trump": 91851,
+    "total": 227640,
+    "margin": 16.16
+   },
+   "same_area_pct": 79.2
+  },
+  {
+   "district": 47,
+   "2021": {
+    "harris": 182428,
+    "trump": 167325,
+    "total": 362462,
+    "margin": 4.17
+   },
+   "2025": {
+    "harris": 190293,
+    "trump": 154229,
+    "total": 357880,
+    "margin": 10.08
+   },
+   "same_area_pct": 35.6
+  },
+  {
+   "district": 48,
+   "2021": {
+    "harris": 152884,
+    "trump": 209800,
+    "total": 371854,
+    "margin": -15.31
+   },
+   "2025": {
+    "harris": 165733,
+    "trump": 154575,
+    "total": 328887,
+    "margin": 3.39
+   },
+   "same_area_pct": 47.5
+  },
+  {
+   "district": 49,
+   "2021": {
+    "harris": 202287,
+    "trump": 172361,
+    "total": 385546,
+    "margin": 7.76
+   },
+   "2025": {
+    "harris": 211077,
+    "trump": 164262,
+    "total": 386796,
+    "margin": 12.1
+   },
+   "same_area_pct": 69.9
+  },
+  {
+   "district": 50,
+   "2021": {
+    "harris": 234873,
+    "trump": 124867,
+    "total": 372180,
+    "margin": 29.56
+   },
+   "2025": {
+    "harris": 214644,
+    "trump": 146603,
+    "total": 372726,
+    "margin": 18.25
+   },
+   "same_area_pct": 34.2
+  },
+  {
+   "district": 51,
+   "2021": {
+    "harris": 204059,
+    "trump": 124434,
+    "total": 338858,
+    "margin": 23.5
+   },
+   "2025": {
+    "harris": 205156,
+    "trump": 140215,
+    "total": 355711,
+    "margin": 18.26
+   },
+   "same_area_pct": 10.0
+  },
+  {
+   "district": 52,
+   "2021": {
+    "harris": 159494,
+    "trump": 102478,
+    "total": 269073,
+    "margin": 21.19
+   },
+   "2025": {
+    "harris": 156713,
+    "trump": 108809,
+    "total": 272674,
+    "margin": 17.57
+   },
+   "same_area_pct": 19.5
+  }
+ ]
+}
