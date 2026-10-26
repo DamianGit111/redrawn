@@ -38,6 +38,15 @@ const SCENES = [
     alt: "The same 2021 map of California's 52 districts, shown in plain gray.",
   },
   {
+    id: "prop-50",
+    plan: "2021",
+    showResults: false,
+    highlight: [],
+    ghost: false,
+    camera: "state",
+    alt: "The 2021 map of California's 52 districts in plain gray, while the card explains Proposition 50.",
+  },
+  {
     id: "map-2021",
     plan: "2021",
     showResults: true,
