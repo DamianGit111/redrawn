@@ -3,30 +3,248 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>California Congressional Maps: 2021 vs 2025</title>
+  <meta name="description">
+  <title>Redrawn: California's Congressional Maps</title>
 
-  <!-- MapLibre GL JS: the map library's stylesheet and script, loaded from the jsdelivr CDN.
-       The version is pinned so the site never changes unexpectedly. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css">
   <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text&family=Public+Sans:wght@400;600&display=swap">
 
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- MapLibre draws the map inside this empty div. -->
-  <div id="map"></div>
+  <!-- Decorative for screen readers: each scene's `alt` goes into #scene-alt instead. -->
+  <div id="map" aria-hidden="true"></div>
 
-  <!-- Buttons for switching between the two plans.
-       data-year tells main.js which plan each button shows. -->
   <div id="plan-buttons">
     <button type="button" data-year="2021">2021 map</button>
     <button type="button" data-year="2025">2025 map</button>
   </div>
 
-  <!-- Hover tooltip. Hidden until the mouse is over a district. -->
-  <div id="tooltip" hidden></div>
+  <div id="tooltip" aria-hidden="true" hidden></div>
 
-  <!-- Our code runs last, after the page elements above exist. -->
+  <!-- Shown only while districts are colored by 2024 results (see setResults). -->
+  <div id="legend" aria-hidden="true" hidden>
+    <div class="legend-bar"></div>
+    <div class="legend-labels">
+      <span>Leaned Harris</span>
+      <span>Even</span>
+      <span>Leaned Trump</span>
+    </div>
+  </div>
+
+  <!-- How far through the story you are; height set in main.js. -->
+  <div id="story-progress" aria-hidden="true"></div>
+
+  <div id="scene-alt" class="visually-hidden" aria-live="polite"></div>
+
+  <!-- Landing: opaque and stacked above the map, so the map stays hidden until the story starts.
+       Not a .step, so the story's IntersectionObserver never sees it. -->
+  <header id="landing">
+    <div class="landing-main">
+      <div class="landing-inner">
+        <h1 class="landing-title">Same votes.<br>Different lines.</h1>
+
+        <figure class="landing-drawing">
+          <!-- The real 2025 District 1 boundary, simplified; draws itself once on load. -->
+          <svg viewBox="0 0 316 304" role="img" aria-labelledby="landing-drawing-caption">
+            <path pathLength="1" d="M313.2 186.5 313.5 2.1 204.4 2.1 204.4 31.6 205.4 31.6 204.7 80.4 185.3 80.4 183.0 81.9 178.6 81.5 175.4 79.6 171.4 81.4 161.9 80.7 157.7 83.0 154.5 83.6 148.8 82.4 134.7 86.0 135.3 87.4 133.8 86.1 133.3 87.6 130.9 86.4 124.2 88.3 113.2 88.0 106.7 85.8 106.1 87.4 102.0 88.7 96.3 92.8 89.7 90.8 88.6 88.9 79.7 91.3 77.9 90.8 74.4 95.1 69.6 94.2 62.3 97.3 63.9 99.5 69.6 102.1 70.2 107.9 68.6 112.2 70.3 112.9 70.9 118.1 69.9 119.4 71.8 121.9 71.3 125.5 73.1 130.0 23.1 130.1 23.0 127.5 3.6 127.4 2.1 129.4 5.3 135.2 6.0 139.1 7.9 140.6 10.2 140.2 9.2 143.5 12.7 146.1 15.8 145.2 20.9 146.0 22.7 148.0 23.3 152.8 28.9 161.4 28.7 164.9 30.5 169.8 29.3 172.6 30.7 178.9 29.7 179.5 31.4 182.1 25.3 189.6 25.6 200.9 27.2 201.2 27.1 203.9 31.8 204.8 28.6 205.6 28.6 208.9 29.5 209.5 28.5 209.2 32.0 213.0 31.9 219.1 35.3 219.1 34.0 220.2 34.9 221.2 34.3 222.7 36.9 225.2 33.2 224.2 32.5 226.2 31.9 224.9 29.8 225.8 30.1 227.4 33.0 228.0 36.0 230.4 36.1 231.7 34.3 231.4 34.8 233.0 39.0 235.3 39.9 238.0 44.0 242.1 41.6 244.2 47.1 246.4 47.8 250.3 45.0 252.5 46.3 256.6 48.1 257.9 52.8 258.1 58.9 261.2 59.0 263.2 61.2 264.7 59.0 267.4 63.6 271.3 67.9 276.5 62.8 277.3 62.4 278.4 70.2 280.8 71.5 283.1 70.6 287.0 71.9 290.8 74.1 293.3 77.2 292.8 78.3 297.3 80.9 299.5 83.2 300.4 83.2 299.1 86.7 302.0 86.7 301.0 88.3 301.5 88.9 298.8 85.7 297.9 88.2 296.6 91.4 297.5 93.6 294.0 95.7 295.9 96.5 293.4 99.6 296.6 102.7 294.4 103.0 292.5 100.8 291.9 101.0 293.1 98.0 291.3 97.7 288.6 95.8 287.9 96.5 285.8 95.1 283.4 92.6 281.8 94.4 279.2 92.7 275.2 94.5 272.8 90.0 270.6 91.0 268.6 95.8 268.3 96.7 265.3 92.7 264.1 91.5 260.4 88.4 256.3 87.8 252.4 88.9 251.2 93.6 254.1 93.6 252.6 94.9 252.0 92.8 250.0 93.6 249.5 95.8 250.2 99.3 254.4 103.6 255.9 105.3 254.9 104.4 249.4 99.9 247.1 99.5 241.6 100.8 242.2 102.5 241.0 100.2 240.9 99.4 232.8 102.8 231.8 105.6 234.9 109.2 233.4 109.9 231.3 114.7 232.8 116.1 231.9 109.3 228.0 109.8 224.6 108.6 220.9 109.0 218.8 110.8 218.4 110.6 215.3 108.0 213.6 107.4 211.6 103.2 212.1 98.7 210.1 96.4 211.1 94.0 209.9 93.0 207.5 87.5 203.5 86.1 200.3 88.9 195.0 85.3 193.1 138.5 192.8 138.5 189.8 148.9 189.9 148.9 193.0 158.7 193.0 157.2 201.5 180.0 201.3 180.5 202.4 181.5 199.9 185.5 201.4 188.0 200.0 192.0 200.0 192.7 198.4 198.2 197.7 201.0 195.1 201.8 190.9 204.2 188.6 203.3 185.7 205.8 183.3 206.6 178.6 211.9 179.3 211.9 177.9 214.4 177.8 218.5 178.6 220.0 174.1 222.8 173.6 222.8 171.7 225.1 171.7 230.8 165.9 229.6 174.4 226.8 176.8 228.8 179.2 229.8 192.2 231.0 191.4 230.3 190.8 233.4 189.4 247.9 187.3 251.6 185.7 259.8 177.9 267.6 179.0 269.7 184.5 272.1 186.4Z"/>
+          </svg>
+          <figcaption id="landing-drawing-caption">District 1, as drawn in 2025</figcaption>
+        </figure>
+
+        <p class="landing-subtitle">
+          In 2025, California redrew its congressional map in the middle of the decade.
+          Scroll to see how district lines decide who wins, and what you can do about it.
+        </p>
+
+        <div class="landing-actions">
+          <a class="landing-button" href="#story">Start exploring</a>
+          <a class="landing-link" href="#explore">Skip to the map</a>
+        </div>
+        <p class="landing-more">Or jump to <a class="landing-link" href="#take-action">ways to take action</a></p>
+      </div>
+      <!-- Both plans colored by the same 2024 votes; the SVG paths are drawn by drawLandingMaps() in main.js. -->
+      <div class="landing-maps" role="img"
+           aria-label="Two maps of California's 52 districts, colored by the 2024 presidential vote. Under the 2021 lines, 41 districts leaned Harris. Under the 2025 lines, 47 did.">
+        <figure class="landing-map">
+          <svg data-year="2021" aria-hidden="true"></svg>
+          <figcaption>2021 lines<span>41 districts leaned Harris</span></figcaption>
+        </figure>
+        <figure class="landing-map">
+          <svg data-year="2025" aria-hidden="true"></svg>
+          <figcaption>2025 lines<span>47 districts leaned Harris</span></figcaption>
+        </figure>
+        <div class="landing-maps-key" aria-hidden="true">
+          <div class="legend-bar"></div>
+          <div class="legend-labels">
+            <span>Leaned Harris</span>
+            <span>Even</span>
+            <span>Leaned Trump</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="landing-credit">Made by Damian Stout-Lehman, a student in California's 15th District.</p>
+  </header>
+
+  <!-- One <section> per scene; data-scene must match an id in scenes.js. -->
+  <main id="story">
+    <section class="step" data-scene="districts">
+      <div class="card">
+        <h2>52 districts</h2>
+        <p>This is California, split up into 52 congressional districts, with each one containing about 760,000 people. Hover over each district to view information about its political leaning and demographics. These districts determine California’s representation in the House of Representatives.</p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="what-is-gerrymandering">
+      <div class="card">
+        <h2>Gerrymandering vs Redistricting</h2>
+        <p>Drawing districts is both complicated and common throughout the US and California, and is part of a process called redistricting. Gerrymandering, on the other hand, is redistricting to favor one party. Mapmakers can do this by packing their opponents’ voters into a few districts, or cracking them across many so they waste votes and fall just short in every district. In 2025, two states chose to redraw their maps.</p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="why-redraw">
+      <div class="card">
+        <h2>Why California redrew</h2>
+        <p>California redrew its map in 2025 in order to offset the effects of Texas Republicans reorganizing their map and adding up to five Republican seats to congress. They did this by adding Prop. 50 to the November 2025 special election ballot, which created a temporary new map that only applies for the 2026, 2028, and 2030 election cycles.</p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="map-2021">
+      <div class="card">
+        <h2>The 2021 map</h2>
+        <p>Each color represents political lean; purple means leaned Harris, orange means leaned Trump. The outlined districts indicate which ones flipped from Trump to Harris after the 2025 redraw. Again, hover over each district to see specific data points/information about demographics and voter stance.</p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="map-2025">
+      <div class="card">
+        <h2>The 2025 map</h2>
+        <p>Here’s the new 2025 map, currently being used for the first time in the Nov 3, 2026 midterms. Same voters, same votes: 47 of 52 districts now lean Harris, which is up from 41, and all six outlined districts flip their political leaning.</p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="district-1">
+      <div class="card">
+        <h2>Shifting people, shifting power</h2>
+        <p>Let’s observe one specific district: district 1. Under the old lines, the district leaned Trump 25 points, while the redrawn district now leaned Harris by 12 points. The district still has the same amount of people, but they do not have the same community of residents.</p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="district-41">
+      <div class="card">
+        <h2>Same number, different place</h2>
+        <p>With district 41, however, the striking difference lies in the district’s location. Crucially, none of the same territory is shared between the old district 41 and new district 41, which means if you lived in district 41 you would, no matter who you were, now reside in a different district.</p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="district-15">
+      <div class="card">
+        <h2>Our district: CA-15</h2>
+        <p>Now let's zoom in locally, to our very own district 15. Rep. Kevin Mullin’s district, shown here, is essentially identical to its pre-redistrict form post-redraw (leaning Harris by 48 points either way). The fact that nothing changed locally while major statewide shifts were occurring was really surprising to me.</p>
+      </div>
+    </section>
+
+    <section class="step" id="explore" data-scene="explore">
+      <div class="card">
+        <h2>Explore</h2>
+        <p>In order to get involved politically and make your voice heard, explore some of these <a href="#take-action">crucial government resources</a>! This is what you can do now, and how to be ready when the lines are drawn again in 2031. Feel free to explore the map in the meantime.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Take action: opaque like the landing, so the map stays hidden behind it. -->
+  <section id="take-action" aria-labelledby="take-action-title">
+    <div class="take-action-inner">
+      <h2 id="take-action-title" class="take-action-title">Make your voice heard</h2>
+      <p class="take-action-lead">
+        California's congressional map is set through the 2030 election. Here's what you can do now,
+        and how to be ready when the lines are drawn again in 2031.
+      </p>
+
+      <h3 class="action-group-title">Things you can do now</h3>
+      <ul class="action-list">
+        <li class="action">
+          <h4 class="action-title">Pre-register to vote at 16 or 17</h4>
+          <div class="action-body">
+            <p class="action-text">You're automatically registered when you turn 18.</p>
+            <p class="action-who">Who can do it: California residents 16+</p>
+            <a class="action-link" href="https://www.sos.ca.gov/elections/pre-register-16-vote-18" target="_blank" rel="noopener">Open link<span class="visually-hidden"> for pre-register to vote at 16 or 17 (opens in a new tab)</span></a>
+          </div>
+        </li>
+        <li class="action">
+          <h4 class="action-title">Be a student poll worker</h4>
+          <div class="action-body">
+            <p class="action-text">Help run the Nov 3, 2026 election; many counties pay.</p>
+            <p class="action-who">Who can do it: High schoolers 16+ with a 2.5 GPA and permission</p>
+            <a class="action-link" href="https://www.sos.ca.gov/elections/poll-worker-information" target="_blank" rel="noopener">Open link<span class="visually-hidden"> for be a student poll worker (opens in a new tab)</span></a>
+          </div>
+        </li>
+        <li class="action">
+          <h4 class="action-title">Register and vote</h4>
+          <div class="action-body">
+            <p class="action-text">Check your registration and which district you're in now.</p>
+            <p class="action-who">Who can do it: Eligible adults 18+</p>
+            <a class="action-link" href="https://registertovote.ca.gov/" target="_blank" rel="noopener">Open link<span class="visually-hidden"> for register and vote (opens in a new tab)</span></a>
+          </div>
+        </li>
+        <li class="action">
+          <h4 class="action-title">Contact your representative</h4>
+          <div class="action-body">
+            <p class="action-text">Tell Rep. Kevin Mullin what you think about how districts should be drawn.</p>
+            <p class="action-who">Who can do it: Anyone, any age</p>
+            <a class="action-link" href="https://kevinmullin.house.gov/contact" target="_blank" rel="noopener">Open link<span class="visually-hidden"> for contact your representative (opens in a new tab)</span></a>
+          </div>
+        </li>
+        <li class="action">
+          <h4 class="action-title">Map your community</h4>
+          <div class="action-body">
+            <p class="action-text">Show what connects your neighborhood so it can be kept together next time.</p>
+            <p class="action-who">Who can do it: Anyone</p>
+            <a class="action-link" href="https://drawmycacommunity.org" target="_blank" rel="noopener">Open link<span class="visually-hidden"> for map your community (opens in a new tab)</span></a>
+          </div>
+        </li>
+      </ul>
+
+      <h3 class="action-group-title">Before the next redraw</h3>
+      <ul class="action-list">
+        <li class="action">
+          <h4 class="action-title">Be counted in the 2030 census</h4>
+          <div class="action-body">
+            <p class="action-text">District lines are built from census counts.</p>
+            <p class="action-who">Who can do it: Everyone</p>
+            <a class="action-link" href="https://www.census.gov" target="_blank" rel="noopener">Open link<span class="visually-hidden"> for be counted in the 2030 census (opens in a new tab)</span></a>
+          </div>
+        </li>
+        <li class="action">
+          <h4 class="action-title">Apply to the Citizens Redistricting Commission</h4>
+          <div class="action-body">
+            <p class="action-text">The 14-member commission draws the next map.</p>
+            <p class="action-who">Who can do it: Registered voters who meet the State Auditor's rules</p>
+            <a class="action-link" href="https://shapecaliforniasfuture.auditor.ca.gov/" target="_blank" rel="noopener">Open link<span class="visually-hidden"> for apply to the Citizens Redistricting Commission (opens in a new tab)</span></a>
+          </div>
+        </li>
+        <li class="action">
+          <h4 class="action-title">Testify at public hearings</h4>
+          <div class="action-body">
+            <p class="action-text">The commission hears public comments before it draws.</p>
+            <p class="action-who">Who can do it: Anyone, any age</p>
+            <a class="action-link" href="https://wedrawthelines.ca.gov" target="_blank" rel="noopener">Open link<span class="visually-hidden"> for testify at public hearings (opens in a new tab)</span></a>
+          </div>
+        </li>
+      </ul>
+
+      <p class="take-action-footer">
+        This app doesn't collect your information, and nothing you do here changes any map.
+      </p>
+    </div>
+  </section>
+
+  <script src="scenes.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
